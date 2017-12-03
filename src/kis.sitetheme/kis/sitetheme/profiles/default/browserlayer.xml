@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+    name="kis.sitetheme"
+    interface="kis.sitetheme.interfaces.IKisSiteThemeLayer"
+  />
+</layers>

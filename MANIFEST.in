@@ -1,0 +1,2 @@
+graft src/kis
+include *.cfg *.rst *.in

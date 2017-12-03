@@ -1,0 +1,2 @@
+graft kis
+include *.cfg *.rst *.in
