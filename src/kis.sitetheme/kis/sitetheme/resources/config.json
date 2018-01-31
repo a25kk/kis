@@ -1,0 +1,103 @@
+{
+  "name": "kis",
+  "paths": {
+    "app": "app/",
+    "dev": "_site/",
+    "dist": "dist/",
+    "diazoPrefix": "/++theme++kis.sitetheme/",
+    "src": "node_modules/"
+  },
+  "favicon": {
+    "dataFile": "faviconData.json",
+    "masterPicture": "favicon.png",
+    "iconPath": "assets/ico/",
+    "ios": "#ffffff",
+    "windows": "#2d89ef",
+    "androidBackground": "#ffffff",
+    "androidColor": "#ffffff",
+    "safariColor": "#5bbad5",
+    "revisionKey": "iet7OjeChoz1",
+    "html": "_includes/base/head.html",
+    "htmlDist": "_includes/base/"
+  },
+  "scripts": {
+    "src": [
+        "JVFloat/jvfloat.js",
+        "flickity/dist/flickity.pkgd.js",
+        "fontfaceobserver/fontfaceobserver.js",
+        "hideShowPassword/hideShowPassword.js",
+        "lazysizes/lazysizes-umd.js",
+        "lazysizes/plugins/parent-fit/ls.parent-fit.js",
+        "mailcheck/src/mailcheck.js",
+        "requirejs/requires.js",
+        "respimage/respimage.js"
+
+    ],
+    "base": [
+      "JVFloat/jvfloat.js",
+      "flickity/dist/flickity.pkgd.js",
+      "fontfaceobserver/fontfaceobserver.js",
+      "hideShowPassword/hideShowPassword.js",
+      "jquery/dist/jquery.js",
+      "lazysizes/lazysizes.js",
+      "lazysizes/plugins/ls.parent-fit.js",
+      "mailcheck/src/mailcheck.js",
+      "requirejs/require.js",
+      "respimage/respimage.js"
+    ]
+  },
+  "replacementPatterns": {
+        "server": [
+            {
+                "match": "../../assets/",
+                "replacement": "../assets/"
+            },
+            {
+                "match": "../../dist/styles/",
+                "replacement": "/styles/"
+            },
+            {
+                "match": "../dist/styles/",
+                "replacement": "/styles/"
+            },
+            {
+                "match": "../../dist/scripts/",
+                "replacement": "/scripts/"
+            },
+            {
+                "match": "../dist/scripts/",
+                "replacement": "/scripts/"
+            }
+        ],
+        "pat": [
+            {
+                "match": "../assets/",
+                "replacement": "assets/"
+            },
+            {
+                "match": "assets/",
+                "replacement": "/++theme++kis.sitetheme//dist/assets/"
+            },
+            {
+                "match": "../styles/",
+                "replacement": "/++theme++kis.sitetheme/dist/styles/"
+            },
+            {
+                "match": "styles/",
+                "replacement": "/++theme++kis.sitetheme/dist/styles/"
+            },
+            {
+                "match": "/styles/",
+                "replacement": "/++theme++kis.sitetheme/dist/styles/"
+            },
+            {
+                "match": "../scripts/",
+                "replacement": "/++theme++kis.sitetheme/scripts/"
+            },
+            {
+                "match": "scripts/",
+                "replacement": "/++theme++kis.sitetheme/scripts/"
+            }
+        ]
+    }
+}
