@@ -5,7 +5,13 @@ import {create as bsCreate} from 'browser-sync';
 import del from 'del';
 import revDel from 'rev-del';
 import args from 'yargs';
-import {stream as wiredep} from 'wiredep';
+import hub from 'gulp-hub';
+
+hub([
+    './tasks/clean.js',
+    './tasks/favicon.js',
+    './tasks/jekyll.js'
+]);
 
 const $ = gulpLoadPlugins();
 const browserSync = bsCreate();
@@ -51,7 +57,7 @@ var isProduction = args.env === 'dist';
 // You should run it at least once to create the icons. Then,
 // you should run it whenever RealFaviconGenerator updates its
 // package (see the check-for-favicon-update task below).
-gulp.task('generate-favicon', function(done) {
+gulp.task('xgenerate-favicon', function(done) {
     $.realFavicon.generateFavicon({
         masterPicture: cfg.paths.app + cfg.favicon.iconPath + cfg.favicon.masterPicture,
         dest: cfg.paths.dist + cfg.favicon.iconPath,
@@ -123,7 +129,7 @@ gulp.task('generate-favicon', function(done) {
 // Inject the favicon markups in your HTML pages. You should run
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
-gulp.task('inject-favicon-markups', function() {
+gulp.task('xinject-favicon-markups', function() {
     gulp.src([ cfg.paths.app + cfg.favicon.html ])
         .pipe($.realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(cfg.favicon.dataFile)).favicon.html_code))
         .pipe(gulp.dest(cfg.paths.app + cfg.favicon.htmlDist));
@@ -133,7 +139,7 @@ gulp.task('inject-favicon-markups', function() {
 // released a new Touch icon along with the latest version of iOS).
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
-gulp.task('check-for-favicon-update', function(done) {
+gulp.task('xcheck-for-favicon-update', function(done) {
     var currentVersion = JSON.parse(fs.readFileSync(cfg.favicon.dataFile)).version;
     $.realFavicon.checkForUpdates(currentVersion, function(err) {
         if (err) {
@@ -148,7 +154,7 @@ gulp.task('check-for-favicon-update', function(done) {
  */
 gulp.task('jekyll-build', function (done) {
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
+    return cp.spawn('jekyll', ['build', '--quiet'], {stdio: 'inherit'})
         .on('close', done);
 });
 
