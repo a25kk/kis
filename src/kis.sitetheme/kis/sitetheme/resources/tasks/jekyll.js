@@ -17,7 +17,7 @@ var messages = {
  */
 gulp.task('jekyll:build', function (done) {
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ['build', '--quiet'], {stdio: 'inherit'})
+    return cp.spawn('jekyll', ['build', '--quiet'], {stdio: 'inherit', shell: true, cwd: '../'})
         .on('close', done);
 });
 
@@ -29,12 +29,12 @@ done();
 
 // Build Jekyll with production settings
 gulp.task('jekyll:prod', done => {
-    cp.spawnd('jekyll', ['build', '--config _config.yml'], {stdio: 'inherit'});
+    cp.spawnd('jekyll', ['build', '--config _config.yml'], {stdio: 'inherit', shell: true, cwd: '../'});
     done();
 });
 
 // Check Jekyll for configuration errors
 gulp.task('jekyll:doctor', done => {
-    return cp.spawn('jekyll', ['doctor', '--config', '_config.yml'], {stdio: 'inherit', shell: true});
+    return cp.spawn('jekyll', ['doctor'], {stdio: 'inherit', shell: true, cwd: '../'});
     done();
 });

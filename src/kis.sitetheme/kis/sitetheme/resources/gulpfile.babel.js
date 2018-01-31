@@ -148,16 +148,6 @@ gulp.task('xcheck-for-favicon-update', function(done) {
     });
 });
 
-
-/**
- * Build the Jekyll Site
- */
-gulp.task('jekyll-build', function (done) {
-    browserSync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ['build', '--quiet'], {stdio: 'inherit'})
-        .on('close', done);
-});
-
 gulp.task('browser-sync', function () {
     browserSync.init({
         notify: false,
@@ -316,7 +306,7 @@ gulp.task('replace-pat', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', cfg.paths.dist]));
 
-gulp.task('serve', ['styles', 'scripts', 'jekyll-build', 'replace', 'html'], () => {
+gulp.task('serve', ['styles', 'scripts', 'jekyll:build', 'replace', 'html'], () => {
     browserSync.init({
     notify: false,
     port: 9499,
@@ -338,7 +328,7 @@ gulp.watch([
 
 gulp.watch(cfg.paths.app + "sass/**/*.scss", ['styles']);
 gulp.watch(cfg.paths.app + "scripts/**/*.js", ['scripts']);
-gulp.watch(cfg.paths.app + "{,*/}*.html", ['jekyll-build', 'html']);
+gulp.watch(cfg.paths.app + "{,*/}*.html", ['jekyll:build', 'html']);
 });
 
 gulp.task('default', ['browser-sync'], function () {
@@ -370,7 +360,7 @@ gulp.task('build-dev', function(done) {
     runSequence(
         'clean',
         ['fonts', 'images'],
-        ['jekyll-build', 'styles', 'scripts'],
+        ['jekyll:build', 'styles', 'scripts'],
         'replace-pat',
         'html',
         done);
@@ -380,7 +370,7 @@ gulp.task('build-production', function(done) {
     runSequence(
         'clean',
         ['fonts', 'images'],
-        ['jekyll-build', 'styles', 'scripts'],
+        ['jekyll:build', 'styles', 'scripts'],
         'replace-server',
         'html',
         done);
