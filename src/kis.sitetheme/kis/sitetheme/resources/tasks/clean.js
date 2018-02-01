@@ -3,7 +3,8 @@ import del from 'del';
 
 var cfg = require('./../config.json');
 
-// 1. Cleaning tasks
-gulp.task('clean:dist', del.bind(null, [cfg.paths.dist]));
-gulp.task('clean:assets', del.bind(null, ['.tmp', cfg.paths.dist + 'assets']));
+// Cleaning tasks
+gulp.task('clean:dist', del.bind(null, [cfg.paths.base + cfg.paths.dist], {force: true}));
+gulp.task('clean:dev', del.bind(null, [cfg.paths.base + cfg.paths.dev]));
+gulp.task('clean:assets', del.bind(null, ['.tmp', cfg.paths.base + cfg.paths.dist + 'assets']));
 gulp.task('clean:metadata', del.bind(null, ['src/.jekyll-metadata'], {dot: true}));

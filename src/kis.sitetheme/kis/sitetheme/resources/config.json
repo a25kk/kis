@@ -2,9 +2,10 @@
   "name": "kis",
   "paths": {
     "app": "app/",
+    "base": "../",
     "dev": "_site/",
-    "dist": "dist/",
     "diazoPrefix": "/++theme++kis.sitetheme/",
+    "dist": "dist/",
     "src": "node_modules/"
   },
   "favicon": {
