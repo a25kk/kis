@@ -1,4 +1,5 @@
 import gulp from 'gulp';
+import revDel from 'rev-del';
 import {create as bsCreate} from 'browser-sync';
 import gulpLoadPlugins from 'gulp-load-plugins';
 
