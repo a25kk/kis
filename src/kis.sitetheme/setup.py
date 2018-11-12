@@ -36,7 +36,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'plone.app.theming',
-        'plone.app.themingplugins',
+        #'plone.app.themingplugins',
         'setuptools',
     ],
     extras_require={

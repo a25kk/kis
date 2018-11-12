@@ -14,9 +14,9 @@ modules:
     class: virtualenv
     base_path: .
     python_bin: python2
-  virtualenv_web:
+  virtualenv_app:
     class: virtualenv
-    base_path: ../web
+    base_path: ../
     python_bin: python3
   docker:
       data_path: ../_docker_data

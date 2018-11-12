@@ -4,7 +4,7 @@ SITE_THEME="${CONFIG_paths_site_theme:-'I have no theme configuration'}"
 
 task:install() {
     cd .. && chmod 775 ./bootstrap.sh && ./bootstrap.sh
-    virtualenv:install
+    virtualenv_build:install
     docker:install
     npm:install
 }
@@ -14,7 +14,7 @@ task:install:theme() {
 }
 
 task:update() {
-    virtualenv:update
+    virtualenv_build:update
     docker:update
 }
 
@@ -45,11 +45,11 @@ task:gulp() {
 }
 
 task:watch() {
-    virtualenv:run fab watch
+    virtualenv_build:run fab watch
 }
 
 task:fab() {
-    virtualenv:run fab "$@"
+    virtualenv_build:run fab "$@"
 }
 
 # docker
