@@ -1,3 +1,8 @@
 setuptools==40.2.0
 zc.buildout==2.12.2
 Fabric==1.14.0
+typing; python_version < '3.5'
+appdirs==1.4.3
+packaging==18.0
+pyparsing==2.2.2
+six==1.10.0
