@@ -125,6 +125,10 @@ task:db:download() {
     virtualenv:run fab "$1" download:"${2:-}"
 }
 
+task:theme:html() {
+    docker:command:jekyll "$@"
+}
+
 task:venv:reset() {
     cd ../ &&
     rm -rf ./bin &&
