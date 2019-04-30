@@ -4,18 +4,20 @@ SITE_THEME="${CONFIG_paths_site_theme:-'I have no theme configuration'}"
 
 task:install() {
     cd .. && chmod 775 ./bootstrap.sh && ./bootstrap.sh
-    virtualenv_build:install
+    virtualenv:install
     docker:install
     npm:install
 }
 
 task:install:theme() {
-    npm:install
+    # npm:install
+    docker:command:npm install
 }
 
 task:update() {
-    virtualenv_build:update
+    virtualenv:update
     docker:update
+    docker:command:npm install
 }
 
 task:update:theme() {
@@ -34,7 +36,7 @@ task:deploy() {
         echo ""
         b5:abort "Argument missing: server name"
     fi
-    virtualenv_build:run fab "$1" deploy:"${2:-}"
+    virtualenv:run fab "$1" deploy:"${2:-}"
 }
 
 task:deploy:setup() {
@@ -44,7 +46,7 @@ task:deploy:setup() {
         echo ""
         b5:abort "Argument missing: server name"
     fi
-    virtualenv_build:run fab "$1" deploy_setup:"${2:-}"
+    virtualenv:run fab "$1" deploy_setup:"${2:-}"
 }
 
 task:status() {
@@ -54,11 +56,15 @@ task:status() {
         echo ""
         b5:abort "Argument missing: server name"
     fi
-    virtualenv_build:run fab "$1" server_status
+    virtualenv:run fab "$1" server_status
 }
 
 task:build() {
     cd ../ && bin/buildout -Nc development.cfg
+}
+
+task:build:full() {
+    cd ../ && bin/buildout -c development.cfg
 }
 
 task:plone() {
@@ -66,18 +72,31 @@ task:plone() {
 }
 
 task:css() {
-    cd ${SITE_THEME} && npm:run gulp dist
-    cd ..
+    #cd ${SITE_THEME} && npm:run gulp dist
+    #cd ..
+    docker:command:gulp dist
 }
 
 task:gulp() {
-    cd ${SITE_THEME} && npm:run gulp "$@"
-    cd ..
+    #cd ${SITE_THEME} && npm:run gulp "$@"
+    #cd ..
+    docker:command:gulp "$@"
+}
+
+task:gulp:tasks() {
+    #cd ${SITE_THEME} && npm:run gulp "$@"
+    #cd ..
+    docker:command:gulp --tasks-simple
 }
 
 task:watch() {
     virtualenv:run fab watch
 }
+
+task:npm() {
+    docker:command:npm "$@"
+}
+
 
 task:fab() {
     virtualenv:run fab "$@"
@@ -103,5 +122,12 @@ task:db:download() {
         echo ""
         b5:abort "Argument missing: server name"
     fi
-    virtualenv_build:run fab "$1" download:"${2:-}"
+    virtualenv:run fab "$1" download:"${2:-}"
+}
+
+task:venv:reset() {
+    cd ../ &&
+    rm -rf ./bin &&
+    rm -rf ./lib &&
+    rm -rf ./include
 }
