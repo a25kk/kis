@@ -30,6 +30,8 @@ secret.cfg
 src/ade25.*
 src/bobtemplates.*
 src/plone.*
+src/Products.PDBDebugMode
+src/slimit
 src/sauna.reload
 src/vwc.*
 src/watchdog

@@ -8,7 +8,23 @@ services:
     labels:
       - traefik.enable=true
       - traefik.docker.network=traefik_gateway
-      #- traefik.frontend.rule=HostRegexp:web.vox.{domain},{something:[a-z]+}.web.vox.{domain}
+
+  jekyll:
+    networks:
+      - default
+      - traefik_gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_gateway
+
+  node:
+    networks:
+      - default
+      - traefik_gateway
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=traefik_gateway
+
 networks:
   default:
   traefik_gateway:

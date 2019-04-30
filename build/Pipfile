@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 watchdog = "*"
 fabdeploit = "*"
-Fabric = "*"
+Fabric = "1.14.0"
 
 [dev-packages]
 
