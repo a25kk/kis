@@ -4,9 +4,10 @@
     "app": "app/",
     "base": "../../src/kis.sitetheme/kis/sitetheme/resources",
     "dev": "_site/",
-    "dist": "dist/",
     "diazoPrefix": "/++theme++lra.sitetheme/",
-    "src": "node_modules/"
+    "dist": "dist/",
+    "src": "node_modules/",
+    "theme": "../../theme/"
   },
   "favicon": {
     "dataFile": "faviconData.json",

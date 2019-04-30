@@ -13,7 +13,7 @@ var pkg = require('./../package.json');
 // Styles build task
 export function styles(cb) {
     pump([
-        gulp.src(cfg.paths.app + 'scss/main.scss'),
+        gulp.src(cfg.paths.theme + 'scss/main.scss'),
         $.plumber(),
         $.sourcemaps.init(),
         $.sass.sync({
@@ -25,7 +25,7 @@ export function styles(cb) {
         gulp.dest(cfg.paths.dist + 'styles/'),
         $.cssnano(),
         $.rename({
-            basename: pkg.name,
+            basename: cfg.name,
             suffix: '.min'
         }),
         $.sourcemaps.write(),

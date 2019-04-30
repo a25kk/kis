@@ -15,6 +15,7 @@
 ba
 bin
 bower_components
+_site
 # build
 coverage
 develop-eggs

@@ -97,6 +97,9 @@ task:npm() {
     docker:command:npm "$@"
 }
 
+task:jekyll() {
+    docker:command:jekyll "$@"
+}
 
 task:fab() {
     virtualenv:run fab "$@"
@@ -123,10 +126,6 @@ task:db:download() {
         b5:abort "Argument missing: server name"
     fi
     virtualenv:run fab "$1" download:"${2:-}"
-}
-
-task:theme:html() {
-    docker:command:jekyll "$@"
 }
 
 task:venv:reset() {
