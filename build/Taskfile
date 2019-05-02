@@ -7,6 +7,7 @@ task:install() {
     virtualenv:install
     docker:install
     npm:install
+    template:render --overwrite ask-if-older templates/config.local.yml.jinja2 config.local.yml
 }
 
 task:install:theme() {
@@ -18,6 +19,7 @@ task:update() {
     virtualenv:update
     docker:update
     docker:command:npm install
+    template:render --overwrite ask-if-older templates/config.local.yml.jinja2 config.local.yml
 }
 
 task:update:theme() {
