@@ -1,11 +1,11 @@
 {
   "name": "kis",
   "paths": {
-    "app": "app/",
-    "base": "../../src/kis.sitetheme/kis/sitetheme/resources",
-    "dev": "_site/",
-    "diazoPrefix": "/++theme++lra.sitetheme/",
-    "dist": "dist/",
+    "app": "../../theme/",
+    "base": "../../resources/theme/kis.theme/",
+    "dev": "../../theme/_site/",
+    "dist": "../../resources/theme/kis.theme/",
+    "diazoPrefix": "/++theme++kis.theme/",
     "src": "node_modules/",
     "theme": "../../theme/"
   },
